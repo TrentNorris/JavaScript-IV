@@ -8,7 +8,7 @@ Person receives speak as a method.
     This method logs out a phrase Hello my name is Fred, I am from Bedrock where name and location are the object's own props */
 
     class Person {
-        Person(args) {
+        constructor(args) {
             this.name = args.name;
             this.age = args.age;
             this.location = args.location;
@@ -36,7 +36,8 @@ Instructor has the following methods:
 demo    receives a subject string as an argument and logs out the phrase 'Today we are learning about {subject}' where subject is the param passed in.
 grade   receives a student object and a subject string as arguments and logs out '{student.name} receives a perfect score on {subject}' */
 class Instructor extends Person {
-    Instructor(args) {
+    constructor(args) {
+        super(args);
         this.specialty = args.specialty;
         this.favLanguage = args.favLanguage;
         this.catchPhrase = args.catchPhrase;
@@ -46,7 +47,7 @@ class Instructor extends Person {
         return 'Today we are learning about ' + subject;
     }
     grade(student, subject) {
-        return student.name + 'receives a perfect score on ' + subject;
+        return student.name + ' receives a perfect score on ' + subject;
     }
 }
 
@@ -67,7 +68,8 @@ PRAssignment        a method that receives a subject as an argument and logs out
 sprintChallenge      similar to PRAssignment but logs out student.name has begun sprint challenge on {subject} */
 
 class Student extends Person {
-    Student(args) {
+    constructor(args) {
+        super(args);
         this.previousBackground = args.previousBackground;
         this.className = args.className;
         this.favSubjects = args.favSubjects;
@@ -99,8 +101,8 @@ standUp a method that takes in a slack channel and logs {name} announces to {cha
 debugsCode a method that takes in a student object and a subject and logs out {name} debugs {student.name}'s code on {subject} */
 
 class ProjectManagers extends Instructor {
-    ProjectManagers(args) {
-        super();
+    constructor(args) {
+        super(args);
         this.gradClassName = args.gradClassName;
         this.favInstructor = args.favInstructor;
     }
@@ -167,20 +169,9 @@ const fred = new Instructor({
     catchPhrase: `pizza is life`
   });
   
-  /*console.log(fred);
+console.log(fred);
 console.log(rick);
 console.log(harris);
 console.log(morty);
 console.log(nick);
-  /*
-
-  const fred = new Student({
-    name: 'Fred',
-    location: 'Bedrock',
-    age: 37,
-    favLanguage: 'JavaScript',
-    specialty: 'Front-end',
-    catchPhrase: `Don't forget the homies`
-  });
-
-  */
+console.log(fred.speak());
